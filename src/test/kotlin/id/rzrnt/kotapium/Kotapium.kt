@@ -24,12 +24,12 @@ import id.rzrnt.kotapium.Config
 
 open class Kotapium {
     var driver: AppiumDriver<MobileElement>? = null
+    val config = Config()
+    val caps = DesiredCapabilities()
     
     @Before
     @Throws(IOException::class)
     fun setUp() {
-        val config = Config()
-        val caps = DesiredCapabilities()
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, config.PLATFORM_NAME)
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, config.PLATFORM_VERSION)
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, config.DEVICE_NAME)
