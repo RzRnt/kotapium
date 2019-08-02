@@ -19,6 +19,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator
 import org.openqa.selenium.support.PageFactory
 import org.openqa.selenium.remote.DesiredCapabilities
 
+import id.rzrnt.kotapium.Config
+
 
 open class Kotapium {
     var driver: AppiumDriver<MobileElement>? = null
@@ -26,14 +28,15 @@ open class Kotapium {
     @Before
     @Throws(IOException::class)
     fun setUp() {
+        val config = Config()
         val caps = DesiredCapabilities()
-        caps.setCapability("platformName", "Android")
-        caps.setCapability("platformVersion", "6")
-        caps.setCapability("deviceName", "86989034")
-        caps.setCapability("automationName", "espresso")
-        caps.setCapability("udid", "86989034")
-        caps.setCapability("app", "/Users/rezirusnadiputra/Downloads/TheApp-v1.5.0.apk")
-        driver = AndroidDriver(URL("http://localhost:4677/wd/hub"), caps)
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, config.PLATFORM_NAME)
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, config.PLATFORM_VERSION)
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, config.DEVICE_NAME)
+        caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, config.AUTOMATION_NAME)
+        caps.setCapability(MobileCapabilityType.UDID, config.UDID)
+        caps.setCapability(MobileCapabilityType.APP, config.APP)
+        driver = AndroidDriver(URL(config.APPIUM_URL), caps)
     }
 
     @After

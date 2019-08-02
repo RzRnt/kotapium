@@ -2,7 +2,7 @@ package id.rzrnt.kotapium
 
 import id.rzrnt.kotapium.LocatorStrategy
 import id.rzrnt.kotapium.Locator
-import id.rzrnt.kotapium.config
+import id.rzrnt.kotapium.Config
 
 
 import io.appium.java_client.AppiumDriver
@@ -30,7 +30,7 @@ abstract class BasePage(val driver: AppiumDriver<*>) {
     )
   }
 
-  public fun waitUntilElementVisible(locator: Locator, timeout: Long = config().TIMEOUT): WebElement {
+  public fun waitUntilElementVisible(locator: Locator, timeout: Long = Config().TIMEOUT): WebElement {
     return WebDriverWait(driver, timeout)
       .until(ExpectedConditions.presenceOfElementLocated(getLocator(locator)))
   }
