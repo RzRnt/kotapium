@@ -13,5 +13,5 @@ APP=https://github.com/cloudgrey-io/the-app/releases/download/v1.9.0/TheApp-v1.9
 APPIUM_URL=http://localhost:4677/wd/hub
 ```
 
-#Run:
+# Run:
 `./gradlew test`
