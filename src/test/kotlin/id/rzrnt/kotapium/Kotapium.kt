@@ -33,7 +33,7 @@ open class Kotapium {
         caps.setCapability("automationName", "espresso")
         caps.setCapability("udid", "86989034")
         caps.setCapability("app", "/Users/rezirusnadiputra/Downloads/TheApp-v1.5.0.apk")
-        driver = AndroidDriver(URL("http://localhost:4999/wd/hub"), caps)
+        driver = AndroidDriver(URL("http://localhost:4677/wd/hub"), caps)
     }
 
     @After
