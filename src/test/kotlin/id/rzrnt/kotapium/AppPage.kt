@@ -10,7 +10,7 @@ import id.rzrnt.kotapium.AppPageLocator
 open class AppPage(driver: AppiumDriver<*>) : BasePage(driver) {
 
   init {
-
+    //verify app page is opened
   }
 
   public fun tapMenu(menuName: String) {

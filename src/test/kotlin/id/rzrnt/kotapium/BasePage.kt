@@ -24,31 +24,26 @@ abstract class BasePage(val driver: AppiumDriver<*>) {
   }
 
   public fun constructLocator(locator: Locator, formatString: String): Locator {
-    val constructedLocatorValue = locator.locatorValue.format(formatString)
-    val constructedLocator = Locator(
+    return Locator(
       locator.locatorStrategy,
-      constructedLocatorValue
+      locator.locatorValue.format(formatString)
     )
-    return constructedLocator
   }
 
   public fun waitUntilElementVisible(locator: Locator, timeout: Long = config().TIMEOUT): WebElement {
-    var wait: WebDriverWait = WebDriverWait(driver, timeout)
-    return wait.until(ExpectedConditions.presenceOfElementLocated(getLocator(locator)))
+    return WebDriverWait(driver, timeout)
+      .until(ExpectedConditions.presenceOfElementLocated(getLocator(locator)))
   }
 
   public fun tapElement(locator: Locator) {
-    return waitUntilElementVisible(locator).click()
+    waitUntilElementVisible(locator).click()
   }
 
   public fun getLocator(locator: Locator): By {
-    var locatorType: LocatorStrategy = locator.locatorStrategy
-    var locatorValue: String = locator.locatorValue
-    var locatorBy: By = when(locatorType) {
-      LocatorStrategy.XPATH -> By.xpath(locatorValue)
-      LocatorStrategy.ID -> By.id(locatorValue)
-      LocatorStrategy.CLASS -> By.className(locatorValue)
+    return when(locator.locatorStrategy) {
+      LocatorStrategy.XPATH -> By.xpath(locator.locatorValue)
+      LocatorStrategy.ID -> By.id(locator.locatorValue)
+      LocatorStrategy.CLASS -> By.className(locator.locatorValue)
     }
-    return locatorBy
   }
 }
